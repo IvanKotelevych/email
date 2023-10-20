@@ -6,27 +6,25 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
   <style>
-    @media screen {
-      @font-face {
-        font-family: 'Manner Pro Regular';
-        src: url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-regular-pro.woff2?v=1697787703') format('woff2'),
-          url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-regular-pro.woff?v=1697787703') format('woff'),
-          url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-regular-pro.ttf?v=1697787703') format('truetype');
-      }
+    @font-face {
+      font-family: 'Manner Pro Regular';
+      src: url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-regular-pro.woff2?v=1697787703') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-regular-pro.woff?v=1697787703') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-regular-pro.ttf?v=1697787703') format('truetype');
+    }
 
-      @font-face {
-        font-family: 'Manner Pro Medium';
-        src: url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-medium-pro.woff2?v=1697787703') format('woff2'),
-          url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-medium-pro.woff?v=1697787703') format('woff'),
-          url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-medium-pro.ttf?v=1697787703') format('truetype');
-      }
+    @font-face {
+      font-family: 'Manner Pro Medium';
+      src: url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-medium-pro.woff2?v=1697787703') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-medium-pro.woff?v=1697787703') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/manner-medium-pro.ttf?v=1697787703') format('truetype');
+    }
 
-      @font-face {
-        font-family: 'Mabry Pro';
-        src: url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/mabry-regular-pro.woff2?v=1697787703') format('woff2'),
-          url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/mabry-regular-pro.woff?v=1697787703') format('woff'),
-          url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/mabry-regular-pro.ttf?v=1697787703') format('truetype');
-      }
+    @font-face {
+      font-family: 'Mabry Pro';
+      src: url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/mabry-regular-pro.woff2?v=1697787703') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/mabry-regular-pro.woff?v=1697787703') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0774/3114/4728/files/mabry-regular-pro.ttf?v=1697787703') format('truetype');
     }
     * {
       margin: 0;
@@ -47,10 +45,37 @@
       text-decoration: underline;
     }
     .section-title {
-      font-family: manner Pro Medium, sans-serif;
+      font-family: Manner Pro Medium, sans-serif;
       font-weight: 500;
       font-size: 24px;
       line-height: 30px;
+      color: #222222;
+    }
+    .main-subtitle {
+      font-size: 12px;
+      line-height: 16px;
+      font-family: Mabry Pro, sans-serif;
+      font-weight: 400;
+      color: #222222;
+    }
+    .subtitle {
+      font-size: 12px;
+      line-height: 16px;
+      font-family: Mabry Pro, sans-serif;
+      font-weight: 400;
+      color: #8e8e8e;
+    }
+    .hr {
+      border-color: #000000;
+      border-bottom: none;
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+    .info {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 14px;
+      letter-spacing: 0.36px;
     }
   </style>
 </head>
@@ -100,22 +125,59 @@
                       <tr>
                         <td>
                           <center>
-                            <p style="font-family: Manner Pro Regular, sans-serif; font-size: 24px; line-height: 1.25; max-width: 324px;">Thank you for shopping with Sleeper, Zoe.</p>
+                            <p style="font-family: Manner Pro Regular, sans-serif; font-size: 24px; line-height: 1.25; max-width: 324px;">
+                              Thank you for shopping with Sleeper, Zoe.
+                            </p>
                           </center>
                         </td>
                       </tr>
                     </table>
 
-                    <table class="border-contant"
+                    <table class="subtitle"
+                    style="
+                      padding-top: 40px;
+                      padding-bottom: 40px;
+                    "
+                  >
+                    <hr class="hr">
+
+                    <tr>
+                      <td>
+                        <center>
+                          <table class="subtitle" style="text-align: center;">
+                            <tr>
+                              <td style="padding-bottom: 10px;letter-spacing: 0.36px;">
+                                <h3 class="main-subtitle" style="font-weight: 500;">
+                                  TOTAL: 375 USD
+                                </h3>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <p class="info" style="text-transform: uppercase; line-height: 1;">
+                                  Subtotal: 360 USD<br />
+                                  Discount: 20 USD<br />
+                                  Tax: 20 USD<br />
+                                  Shipping: 15 USD<br />
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </center>
+                      </td>
+                    </tr>
+                  </table>
+
+                    <table class="subtitle"
                       style="
-                        padding-top: 40px; padding-bottom: 10px;
-                        font-size: 12px;
-                        line-height: 16px;
-                        font-family: Mabry Pro, sans-serif;
-                        font-weight: 400;
-                        color: #222222;
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        border-spacing: 0 20px;
                       "
                     >
+                      <hr class="hr">
+
                       <tr>
                         <td>
                           <center>
@@ -128,63 +190,172 @@
 
                       <tr>
                         <td>
-                          <table
-                            style="
-                              border-spacing: 20px;
-                              font-size: 12px;
-                            "
-                          >
-                            <tr>
-                              <td>
-                                <a href="#">Contact Us</a>
-                              </td>
-                              <td>
-                                <a href="#">Exchanges & Returns</a>
-                              </td>
-                              <td>
-                                <a href="#">FAQs</a>
-                              </td>
-                              <td>
-                                <a href="#">My Account</a>
-                              </td>
-                            </tr>
-                          </table>
+                          <center>
+                            <table class="subtitle" style="text-align: center;">
+                              <tr>
+                                <td style="padding-bottom: 10px;">
+                                  <h3 class="main-subtitle">
+                                    Shipping Address:
+                                  </h3>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    Zoe Velez
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    401 Broadway
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    411
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    New York NY 10013
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    United States
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    +380638026515
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </center>
                         </td>
                       </tr>
 
                       <tr>
                         <td>
                           <center>
-                            <p
-                            style="
-                              color: #999999;
-                            "
-                            >
-                              Or, you can reply to this email and we'll be in touch.
-                            </p>
+                            <table class="subtitle" style="text-align: center;">
+                              <tr>
+                                <td style="padding-bottom: 10px;">
+                                  <h3 class="main-subtitle">
+                                    Billing Address:
+                                  </h3>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    Asya Varetsa
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    241 President Street
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    Brooklyn NY 11231
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    United States
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
                           </center>
                         </td>
-                        <hr
-                          style="
-                            border-color: #000000;
-                            border-bottom: none;
-                            margin-left: 7px;
-                            margin-right: 7px;
-                          "
-                        >
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <center>
+                            <table class="subtitle" style="text-align: center;">
+                              <tr>
+                                <td style="padding-bottom: 10px;">
+                                  <h3 class="main-subtitle">
+                                    Shipping method:
+                                  </h3>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    Standard shipping (5-10 days)
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </center>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <center>
+                            <table class="subtitle" style="text-align: center;">
+                              <tr>
+                                <td style="padding-bottom: 10px;">
+                                  <h3 class="main-subtitle">
+                                    Payment method:
+                                  </h3>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <p class="info">
+                                    Mastercard ending with 0219 - $85.00
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </center>
+                        </td>
                       </tr>
                     </table>
 
-                    <table class="border-contant"
+                    <table class="subtitle"
                       style="
                         padding-top: 40px; padding-bottom: 10px;
-                        font-size: 12px;
-                        line-height: 16px;
-                        font-family: Mabry Pro, sans-serif;
-                        font-weight: 400;
-                        color: #222222;
                       "
                     >
+                      <hr class="hr">
+
                       <tr>
                         <td>
                           <center>
@@ -197,10 +368,11 @@
 
                       <tr>
                         <td>
-                          <table
+                          <table class="main-subtitle"
                             style="
                               border-spacing: 20px;
                               font-size: 12px;
+                              color: #333333;
                             "
                           >
                             <tr>
@@ -224,7 +396,7 @@
                       <tr>
                         <td>
                           <center>
-                            <p
+                            <p class="subtitle"
                              style="
                               color: #999999;
                              "
@@ -233,14 +405,6 @@
                             </p>
                           </center>
                         </td>
-                        <hr
-                          style="
-                            border-color: #000000;
-                            border-bottom: none;
-                            margin-left: 7px;
-                            margin-right: 7px;
-                          "
-                        >
                       </tr>
 
                       <tr>
