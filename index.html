@@ -1,32 +1,87 @@
+{% capture logo_url %}
+  https://cdn.shopify.com/s/files/1/0774/3114/4728/files/sleeper-logo.png
+{% endcapture %}
 {% capture email_title %}
-Thank you for shopping with Sleeper, {{customer.name}}.
+  {% if customer.name %}
+    Thank you for shopping with Sleeper, {{customer.name}}.
+  {% else %}
+    Thank you for shopping with Sleeper.
+  {% endif %}
 {% endcapture %}
 {% capture order_title %}
-ORDER {{name}}
+  ORDER {{name}}
 {% endcapture %}
 {% capture email_content %}
-We're getting your order ready, and will be in touch with tracking details as soon as it ships.
+  We're getting your order ready, and will be in touch with tracking details as soon as it ships.
 {% endcapture %}
 {% capture cta_text %}
-VIEW YOUR ORDER
+  VIEW YOUR ORDER
+{% endcapture %}
+{% capture link_to_pinterest %}
+  #
+{% endcapture %}
+{% capture link_to_tiktok %}
+  #
+{% endcapture %}
+{% capture link_to_facebook %}
+  #
+{% endcapture %}
+{% capture link_to_instagram %}
+  https://www.instagram.com/
+{% endcapture %}
+
+{% capture space_micro %}
+  <div style="height: 10px"></div>
+{% endcapture %}
+{% capture space_small %}
+  <div style="height: 20px"></div>
+{% endcapture %}
+{% capture space_big %}
+  <div style="height: 40px"></div>
+{% endcapture %}
+
+{% capture hr %}
+  <div style="height: 1px; background-color: #000000; margin-left: 7px; margin-right: 7px;"></div>
+{% endcapture %}
+{% capture header %}
+  <table>
+    <tr>
+      <td>
+        <center style="padding-top: 30px; padding-bottom: 30px;">
+          <img src={{logo_url}} alt="Sleeper logo" width="103" height="21"/>
+        </center>
+      </td>
+    </tr>
+  </table>
+{% endcapture %}
+{% capture cta_btn_link %}
+  <tr>
+    <td>
+      <a href="{{ order_status_url }}"
+        style="text-transform: uppercase; letter-spacing: 0.36px; font-size: 12px; line-height: 12px; color: #333333; width: 100%; cursor: pointer;">
+        <center style="padding: 0 20px;">
+          <center
+            style="padding: 18px 0; border: 1px solid #92C1EF; max-width: 370px; font-family: Mabry Pro, sans-serif;">
+            {{ cta_text }}
+          </center>
+        </center>
+      </a>
+    </td>
+  </tr>
 {% endcapture %}
 {% capture footer %}
   <table>
-    <hr style="border-color: #000000;
-        border-bottom: none;
-        margin-left: 7px;
-        margin-right: 7px;
-      "
-    >
-
     <tr>
       <td>
-        <center style="padding-top: 40px;">
+        {{ space_big }}
+        <center>
           <h2 style="font-family: Manner Pro Medium, sans-serif;
               font-weight: 500;
               font-size: 24px;
               line-height: 30px;
               color: #222222;
+              padding: 0;
+              margin: 0;
             "
           >
             We're here if you need help.
@@ -37,17 +92,20 @@ VIEW YOUR ORDER
 
     <tr>
       <td>
-        <center style="padding-top: 20px;">
+        {{ space_small }}
+        <center>
           <table>
             <tr>
               <td>
-                <a href="#" style="padding-right: 20px; text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">Contact Us</a>
+                <a href="mailto:{{ shop.email }}" style="margin-right: 20px; text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">
+                  Contact Us
+                </a>
               </td>
               <td>
-                <a href="#" style="padding-right: 20px; text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">Exchanges & Returns</a>
+                <a href="#" style="margin-right: 20px; text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">Exchanges & Returns</a>
               </td>
               <td>
-                <a href="#" style="padding-right: 20px; text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">FAQs</a>
+                <a href="#" style="margin-right: 20px; text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">FAQs</a>
               </td>
               <td>
                 <a href="#" style="text-decoration: none; font-size: 12px; line-height: 16px; font-family: Mabry Pro, sans-serif; font-weight: 400; color: #333333;">My Account</a>
@@ -60,87 +118,56 @@ VIEW YOUR ORDER
 
     <tr>
       <td>
-        <center style="padding-top: 20px;">
-          <p style="font-size: 12px;
+        {{ space_small }}
+        <center>
+          <a href="mailto:{{ shop.email }}" style="font-size: 12px;
             line-height: 16px;
             font-family: Mabry Pro, sans-serif;
             font-weight: 400;
             color: #999999;
+            text-decoration: none;
+            padding: 0;
           "
           >
             Or, you can reply to this email and we'll be in touch.
-          </p>
+          </a>
         </center>
       </td>
     </tr>
 
     <tr>
       <td>
-        <center style="padding-bottom: 5px; padding-top: 15px;">
+        {{space_small}}
+        <center>
           <table>
             <tr>
               <td>
-                <a href="#" style="padding-right: 5px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="15" viewBox="0 0 16 15" fill="none">
-                    <rect x="0.5" width="15" height="15" fill="url(#pattern0)"/>
-                    <defs>
-                      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#image0_407_1302" transform="scale(0.0111111)"/>
-                      </pattern>
-
-                      <image id="image0_407_1302" width="90" height="90" xlink:href="data:image/png;base64,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"/>
-                    </defs>
-                  </svg>
+                <a href={{link_to_pinterest}} style="margin-right: 5px;">
+                  <img src="https://cdn.shopify.com/s/files/1/0774/3114/4728/files/Pinterest.png?v=1697979603" alt="Pinterest" height="15px" width="15px" />
                 </a>
               </td>
 
               <td>
-                <a href="#" style="padding-right: 5px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="15" viewBox="0 0 16 15" fill="none">
-                    <rect x="0.5" width="15" height="15" fill="url(#pattern0)"/>
-                    <defs>
-                      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#image0_407_1303" transform="scale(0.0111111)"/>
-                      </pattern>
-
-                      <image id="image0_407_1303" width="90" height="90" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAEGklEQVR4nO2cW4hNURyHPxNmxqW8MC5TnkQoSRLK5UExSUiUex68uD0qlyfv8k4SDSlJFCLxZCgat9xCTblGbnPGnePhfzCmmbXPXnvvtfZZ5//Velpnr/3bX2vWXmudNQcURVEURVEURVEURVEUgDpgC3AVKADFQEsBuAJsBmpTMReDRuCmZfBKLjdKz+6EOqpTcmfZTnr2Fg8Pl7eyKbHFMrjq6eHyVFriSusV9wKgHRhgcV1IFICBcS6wEV20uCZEYrmrySqF8j8q2hGhiF6P/Cl3Vw55zPWXUESb3hutzlIYCEW0iUu+A0A4oqN69A1XQXoiFNFR7PEdIBTRUXP7g1is5tIkFNFRFIF1wDtfAapFNMB9YDHw1cfNQxH9q8zPXQJmAy8zzNItoYiOQwswCTiCw32bahQN8BxYDkwB9uFx7Dbhey+4u7Im4TP1ASYAy4COMu8Zi1B6dNIh4Dvy9dxRMnpZhiLaRL3vAFAdoncDvX2HCEW0aXo3A9iP52cNRXQUq5Dxt7+vANUiGmAJcB2Y6ePmlSC6HXgCvDd8ptxZx2hkdXgOWIgcBnKC95dEF4rANeAEcBp4CHwq1e0CdqR0nzml0oHsVd/n36KlX0r3+I88ib4AbEX+vONiO4/uD0wvlUzJg+h3yMrulO8gWeJb9CNgAXAvYTvl7t55w6fox8BU4I3HDM7wNetoR976aUnO/TE1X6I3AHc83dsLPoaOVqA54jO9kAXGSmTPuAH4lnGuTPEhehvml9dw4Bgyfnemr+Ga3A8drkW/QFZlPdEAXAZGuonjDtdj9EnMvfkAdpJz36Ndiz5rqJsBzHUVxDWuRbcZ6pYmaFd7dBeeGeomJmhXRXfhg6FuUIJ2fxjqcrEV7DrEYEPd6wTtvjDUxfrvqaxwLXqYoc72tGcBuN1DXV9kyugd16JHGeqasduFOwJ87qFuHP53KK1JcqLocETb+2K29wZzj92ZMG9qJ5VsSBLuPealdD2yMiynrY/AtIis1xLmrVjRRWB1RPv1wF7gp6GNFuSLVhOTkaEoF6J9/ItyGzAG+BLxufHACmRzaQjyldct4Dhwvoz7XARm2ceMxMZdLNLoDdsyzrgopZwVPXQUkQVGU0b5RiO9X0WXyltgbMrZBgMPUswYhOgisiSfn1Ku8ciJJheSK050ETkEvh3741k1wFpkuudKckWK/lPakKmfaZ7dmRpgHnKky6VgK9F5/AWaD8AZ5OTSY+Ap8Arp8UORZXUTcvBmaMZZTMRyl0fRlYL+1E8eUdGOsBFdSD1F5fEx7gU2ou9aXBMasR3YiI46zlUNOHFQi7+5ax5KK+XP9RPTSHXKbgVGpOAvFrXIr862IOedfUvIqrQj3/psxGFPVhRFURRFURRFURRFyTO/AceBP08bhPNrAAAAAElFTkSuQmCC"/>
-                    </defs>
-                  </svg>
+                <a href={{link_to_tiktok}} style="margin-right: 5px;">
+                  <img src="https://cdn.shopify.com/s/files/1/0774/3114/4728/files/TikTok.png?v=1697979603" alt="TikTok" height="15px" width="15px" />
                 </a>
               </td>
 
               <td>
-                <a href="#" style="padding-right: 5px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="15" viewBox="0 0 16 15" fill="none">
-                    <rect x="0.5" width="15" height="15" fill="url(#pattern0)"/>
-                    <defs>
-                      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#image0_407_1304" transform="scale(0.0111111)"/>
-                      </pattern>
-
-                      <image id="image0_407_1304" width="90" height="90" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAFYklEQVR4nO2dXWjXVRjHP7mtbeXSYlGRlaYpFZgpFL0RLCnoxt4sKhWi9ygyQrqsi4LAqwwhgi666cIoSIMgbyxK7WKWK6nErEQlZ2tbmVO3/39dPP/JGvu757z//r+dDxx2seec8/y+Hs/bc84ZZDKZTCaTyWQymUxBOSu1A5PQBCwFFgOLgIXAlcC5wPm1nwD/Av21n/uBn4G9wG7gW6AS1esGYQ6wFtgCDAKjjmkA2Ay8CFwa8TsKSTuwGtiKtD5XceulEeBzYBXQFuXLCsJMpKUdIpy49VIv8BowK/hXJqQFWAf0EV/giakPeLnmU6m4Dfie9AJPTD8BywN+dzTagI1AlfSi1ktVYAPQGkiD4MwFdpJeSG3qBhYEUSIgy/EzTYudBoCuAHoE4V5giPSi2aaTwEPeVfHMU4SdE8dKFeBJz9p44x5kcZBaJJ9iP+hVIQ90ASdIL47vdBK406NOTlxFYw582jQAzHcVyXX3rg3YDlzv6ogHhoG/auk4MANZajcDHciu39mWZXcDtyAtPAkbSdfSKsCnwAvAdYiwU3Ex8IRlfRsMtfHG7aRZ8VWB94GrLf3ucqj3Vss6rWkBfrB02CX1A3c5+m4r9CjQg3RF0Vjn4KxtGsTPWOAi9CjwkgcfVHSQZqtzhSf/XYU+iuypG6EZQCbyLHCBRT4XNgGfRK6zHp3A06EraQf+IG5LriBBWl+4tuhR4DCGYTHTFr0SuMgwjyvbkAh3kbgEuM8kg+kIutrQ3gdbDO2bgbuBa4DZk/z+CmePhDXAB57K+h9zSLMzd6OBjwuAHyP5NYK0bO+sjfQB49MQ+mVzK/Hn9s8rfTPqo+8wsPXFPuCU0vYR4NqAvkyGd02akFVZ7Bb9hYGPnyXwr7+mzZRoW/RSJh9YQjNoYJtiB3E2sERjqBV6sb0vTgwo7ZqQhUQKVNpohfa5YDBhWGnXifK/cABU2hRdaC3nJKx7ocZIK/RcB0fKzjyNkVboUp++dESljVboDgdHyo5KG63Qxvuv0wiV0FHDMhPYytRHr7RR59/R75E/DqxX2mpQnSTQCn0c+1B9PYaRlZUPqgZlXeapzjH+0Rhpu45jDo4UDd9TVZU2WqF9tbwi4Fto1epVK/R+B0eKRDtwuecyf9EYaYVWFdYALMIuIH0m9mmMtJXudXCkSKiWy4Z4FfobB0eKhO0xsjOh0kYrdA9me8NFxfdAOAjs0Rhq59FV5IaV67m38cwHXpnCpgeJnEzFLOAZhd1NChsTvibA5f7niB8qek/p27wEvo2i+8cFzEbgj8hPM4ynAnysNTYR+gjwlbE75eVL5BK/CtM55buG9mXGSAtToT8EDhrmKSOHkK5UjanQw8A7hnnKyNvoA8fWzCTe0d0izjqOAOcp/TqNzbr/GPC6Rb6y8Crwd6zKWohzarNoLXoPllEp252sYeAxpte8uopcqRixyeyyZbgTeMshf6OxnoTriHbk+m7Zu45uHJ9yc90EH0IeQjnqWE6R6QMeQF5vsMZHtOEA8q5FsgvpATkF3A/86lqQr7DONuSMhtVAUVAqyIUgk8Pw0ViF31doUvXRI8DDNgLEZAXyAm6jCn2CBni8aoybgT9pPKF78R+FAfyH3sfYDiwDdgQqPwQ7gBtoLJ9P0wy8iX2/HaNFV4A3SHvg0xtLkJZSNKF3EairSEkTEsw8SHqhDyP7FqG6zkLQilztPUB8oX9DovnT6mX0GchjsZuQFVgooUeQQ+8rKeHD3KZ0Ao8izzKMnxbaCt1bK2sNcKFvZ20o4p8HAflzIMuQ/ZPNCvtO5PWF3cB3yOnXajDvMplMJpPJZDKZTKZM/AeVgBDEEtUBawAAAABJRU5ErkJggg=="/>
-                    </defs>
-                  </svg>
+                <a href={{link_to_facebook}} style="margin-right: 5px;">
+                  <img src="https://cdn.shopify.com/s/files/1/0774/3114/4728/files/Facebook.png?v=1697979603" alt="Facebook" height="15px" width="15px" />
                 </a>
               </td>
 
               <td>
-                <a href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="15" viewBox="0 0 16 15" fill="none">
-                    <rect x="0.5" width="15" height="15" fill="url(#pattern0)"/>
-                    <defs>
-                      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#image0_407_1305" transform="scale(0.0111111)"/>
-                      </pattern>
-
-                      <image id="image0_407_1305" width="90" height="90" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAFgklEQVR4nO2d328UVRTHPyvBxUQa9UlLrT8a1EoBFRQrNCE+aDSK/AM+mogWfLN/ggQNb/5ohEcFSTT4o2pV0EQeTIhGTNSGWDE8CALVtEWw3e2uD3fWVN07c2fnnLmz2/tJTkIus/ec883Mnbln7txCIBAIBAKBQCAQCBSUknL/ZeABYCuwDrgduB64Gliu7NvGPPAncAY4CXwHHAW+AuY8xdQy9wCjwB9AvU3sd+BV4C4FPcRZD3yIf9GyWA34AHMFFo4VwF6ggn+hpKwCvBTlVghWA9/iXxgt+wboE1OrRTYC5/AvhrZNAYNCmqXmXmAmIcBOshlgg4hyKVgNnM8YeDvab8CtAvo5sQIzbvlO2pedAK7KrKIDez0kVzTbk1nFBNbSWY9wrVoFM2dQ46MCJFkUey+jllbuxsyafCcoaXPA80B3ZCNRm8tvayhN10c9iaFpI03yHEnx+1dSq5hAmfYqELlad5Ncu1P8fgq40kXAK1wOwpQ6r3E8tt1JUzq+DtjkcqCr0FtTOG8nnnRsi+NBiUAaHMb/Za5hc5gxuZWbYcPecRHQ9TL5Aeh3PFaSSWAcOAZMAKcxNQeALqA3imsL8DA5To8X8T0wINXZBfI7y6rAm5j7QhpKwGbgQNRHXvGeTxlnLGkvp1ZtHPNeMSv9wGc5xfyXQLz/oB3sJeApyYAjngYu5xC/GJpBnsO8QNDiPvRLumJoinyHZKAW+tEVWwyN4C7hdib3AjuBjzFPHhcjm4jahoEbHfrZhN4wIoZGcEljcg+wH7cniCqwD1iV0OcOpVzEkA5sPMHfdmC2hX5ngG0JfR9RyEcMyaCqxD/CPQcsZOh/AdgV0/+dyD9niyEZ1BsxfraTTeTFYsed2W8J5ySGZFC2GV8PrQ0XNpuheRkUzJS9o4X+CXt9Zb+gn4a9bvFVAk4J+hFDKqCXLf33olOfqGKulGa8JugnEdd6tBTHLO1PAMsU/C2L+m7Glwr+rOQt9ISl/VFFn7a+bbGokLfQpy3tmnVk20pQWywquBb+pQb8MubThv8yi/ncQoOLwEpLLFIlzkQd8z6jfVDzHQDkL3SzMwvgV0WfZyztXYo+/0feQvda2n9W9DlpabfFokLeQtte8I4p+rT1nevL5ryF3mJpfxdTn5Cmin0x4pCCv8xIzaAmsd+h9wn6adioxVcJ+EXQjxiSyW+2+FiF7Dcx08ANFl9DwjmJIRnUgRg/jyBT81gAHo/xc0g4JzEkg6oSfyPaRfbC/86Y/gcy9t82QteBTxP8baO1YWQaeCym3xLwuUI+YkgHVscsbomjG1NPdhlKKpgbn21MbjCslIsYGsFdxixuSaIHeBbzMf+PmLrIbPTvMeAZ7DXnxQxiahtLTug6ZlFLHhOHNegu1BRDK8CG2E6r5ltkEP3VsGJoBlnHDCM7JAPG3PiG0RsuVITOa9nuEcy6i6wMoPN00cxEl+3muRB9ATiIqYuk+XCnhJnxHUL+OTnOnBaiF/3TilPAJ5gXqROY+sRs9H9dwE1RXEPAQ8DNHmIU/bSiUz8WkrC3XQR0LZOecDxuKeKkjavQX2QIpNM56nKQ6xhdxrx7u7blcDqTKcy0v5J0oOsZPYe5mwf+zUEcRE5LJ24jkcVqKG5COFaABItihzNqGcsazEoj30n6tgo5bKn5YgES9W27M6voQBn42kNyRbHjkQa50IfZbM930nnbWeAWAf1SsZGltWXmNGZfbC9sYGmc2WfxKHKDPjp7zD6Oh+HCRhmzjWQnPfrNAy/guAtY3qwF3qe9Z5A1zKJLiTc96qzHfOo2hX/hXO1CFLPKnqPafx5kOXA/ZsuydcBtmGrXSvxdkvOYtzTN/jyIeIEoEAgEAoFAIBAIBArP3wkgJZFFV9suAAAAAElFTkSuQmCC"/>
-                    </defs>
-                  </svg>
+                <a href={{link_to_instagram}}>
+                  <img src="https://cdn.shopify.com/s/files/1/0774/3114/4728/files/Instagram.png?v=1697979603" alt="Instagram" height="15px" width="15px" />
                 </a>
               </td>
             </tr>
           </table>
         </center>
+        {{space_micro}}
       </td>
     </tr>
   </table>
@@ -184,58 +211,40 @@ VIEW YOUR ORDER
       margin: 0;
       padding: 0;
     }
+    .gray-text p {
+      font-family: Mabry Pro, sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 400;
+      color: #8e8e8e;
+      letter-spacing: 0.36px;
+      margin: 0;
+      padding: 0;
+    }
   </style>
 </head>
 
 <body>
-  <center>
-    <table style="background-color: #FAFAFA; width: 100%; max-width: 414px;">
+  <center style="width: 100%;">
+    <table>
       <tr>
         <td>
-          <center>
-            <table>
-              <tr>
-                <td>
-                  <center style="padding-top: 30px; padding-bottom: 30px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="103" height="21" viewBox="0 0 103 21" fill="none">
-                      <path
-                        d="M5.97435 20.9137C4.94032 20.9137 3.9063 20.7795 2.87228 20.511C1.83826 20.2233 0.976576 19.9068 0.287228 19.5616L0 14.4411H0.20106C0.890407 16.0329 1.6755 17.2411 2.55633 18.0658C3.45631 18.8904 4.5382 19.3027 5.80201 19.3027C6.85518 19.3027 7.66899 19.0342 8.24345 18.4973C8.8179 17.9603 9.10513 17.2123 9.10513 16.2534C9.10513 15.3712 8.83705 14.6425 8.30089 14.0671C7.76473 13.4726 6.99879 12.8493 6.00307 12.1973L3.15951 10.3274C2.16379 9.63699 1.44571 8.89863 1.0053 8.11233C0.564882 7.32603 0.344674 6.4726 0.344674 5.55206C0.344674 4.51644 0.584031 3.5863 1.06274 2.76164C1.56061 1.93699 2.24995 1.28493 3.13079 0.80548C4.01162 0.326028 5.05521 0.0863025 6.26157 0.0863025C7.12326 0.0863025 7.96579 0.182192 8.78918 0.373973C9.61257 0.546576 10.3785 0.776713 11.087 1.06438L11.3742 5.78219H11.1732C10.7711 4.84247 10.3211 4.07534 9.8232 3.48082C9.32534 2.8863 8.78918 2.44521 8.21472 2.15753C7.64027 1.85069 7.01794 1.69726 6.34774 1.69726C5.50521 1.69726 4.84458 1.94658 4.36587 2.44521C3.9063 2.92466 3.67652 3.56712 3.67652 4.3726C3.67652 5.15891 3.91588 5.83973 4.39459 6.41507C4.8733 6.97123 5.50521 7.49863 6.2903 7.99726L8.67429 9.55069C9.2296 9.89589 9.79448 10.337 10.3689 10.874C10.9625 11.3918 11.4604 12.0151 11.8625 12.7438C12.2646 13.4534 12.4657 14.2877 12.4657 15.2466C12.4657 16.4356 12.188 17.4521 11.6327 18.2959C11.0966 19.1397 10.3402 19.7918 9.36364 20.2521C8.38706 20.6932 7.2573 20.9137 5.97435 20.9137Z"
-                        fill="black" />
-                      <path
-                        d="M15.0034 20.5685V20.3671C15.1566 19.9068 15.2715 19.3123 15.3481 18.5836C15.4438 17.8356 15.4917 17.126 15.4917 16.4548V4.54521C15.4917 3.87397 15.4438 3.17397 15.3481 2.44521C15.2715 1.69726 15.1566 1.09315 15.0034 0.632877V0.431507H19.6565V0.632877C19.5033 1.09315 19.3788 1.69726 19.2831 2.44521C19.2065 3.17397 19.1682 3.87397 19.1682 4.54521V18.9863H22.1267C22.8543 18.9863 23.5149 18.8425 24.1085 18.5548C24.7021 18.2671 25.2287 17.8836 25.6883 17.4041C26.167 16.9247 26.5596 16.4069 26.8659 15.8507H27.067L26.6361 20.9137L24.1947 20.5685H15.0034Z"
-                        fill="black" />
-                      <path
-                        d="M29.2313 20.3671C29.3845 19.9068 29.4994 19.3123 29.576 18.5836C29.6717 17.8356 29.7196 17.126 29.7196 16.4548V4.54521C29.7196 3.87397 29.6717 3.17397 29.576 2.44521C29.4994 1.69726 29.3845 1.09315 29.2313 0.632877V0.431507H38.3939L40.864 0L41.2949 4.68904H41.0651C40.6438 3.97945 40.1938 3.43288 39.7151 3.04932C39.2556 2.66575 38.729 2.39726 38.1354 2.24384C37.5418 2.09041 36.8333 2.0137 36.0099 2.0137H33.3961V18.9863H36.0099C36.795 18.9863 37.4843 18.9096 38.0779 18.7562C38.6907 18.6027 39.2364 18.3342 39.7151 17.9507C40.1938 17.5671 40.6438 17.0205 41.0651 16.311H41.2949L40.864 21L38.3939 20.5685H29.2313V20.3671ZM32.8791 10.5V8.91781H36.2971C36.7375 8.91781 37.1492 8.85069 37.5322 8.71644C37.9343 8.58219 38.346 8.32329 38.7673 7.93973H38.9683V11.4781H38.7673C38.346 11.0753 37.9343 10.8164 37.5322 10.7014C37.1492 10.5671 36.7375 10.5 36.2971 10.5H32.8791Z"
-                        fill="black" />
-                      <path
-                        d="M43.908 20.3671C44.0612 19.9068 44.1761 19.3123 44.2527 18.5836C44.3484 17.8356 44.3963 17.126 44.3963 16.4548V4.54521C44.3963 3.87397 44.3484 3.17397 44.2527 2.44521C44.1761 1.69726 44.0612 1.09315 43.908 0.632877V0.431507H53.0706L55.5407 0L55.9716 4.68904H55.7418C55.3205 3.97945 54.8705 3.43288 54.3918 3.04932C53.9322 2.66575 53.4057 2.39726 52.8121 2.24384C52.2184 2.09041 51.51 2.0137 50.6866 2.0137H48.0728V18.9863H50.6866C51.4717 18.9863 52.161 18.9096 52.7546 18.7562C53.3674 18.6027 53.9131 18.3342 54.3918 17.9507C54.8705 17.5671 55.3205 17.0205 55.7418 16.311H55.9716L55.5407 21L53.0706 20.5685H43.908V20.3671ZM47.5558 10.5V8.91781H50.9738C51.4142 8.91781 51.8259 8.85069 52.2089 8.71644C52.611 8.58219 53.0227 8.32329 53.444 7.93973H53.645V11.4781H53.444C53.0227 11.0753 52.611 10.8164 52.2089 10.7014C51.8259 10.5671 51.4142 10.5 50.9738 10.5H47.5558Z"
-                        fill="black" />
-                      <path
-                        d="M58.5847 20.5685V20.3671C58.7379 19.9068 58.8527 19.3123 58.9293 18.5836C59.0251 17.8356 59.073 17.126 59.073 16.4548V4.54521C59.073 3.87397 59.0251 3.17397 58.9293 2.44521C58.8527 1.69726 58.7379 1.09315 58.5847 0.632877V0.431507H63.9846C65.3633 0.431507 66.6366 0.632877 67.8047 1.03562C68.9919 1.43836 69.9398 2.07123 70.6482 2.93425C71.3759 3.77808 71.7397 4.87123 71.7397 6.2137C71.7397 7.65206 71.4142 8.82192 70.7631 9.72329C70.1121 10.6247 69.193 11.2959 68.0057 11.737C66.8185 12.1589 65.4303 12.3699 63.8409 12.3699H61.1123V10.7877H63.8409C64.6069 10.7877 65.2962 10.6247 65.909 10.2986C66.5409 9.95342 67.0387 9.44521 67.4026 8.77397C67.7664 8.10274 67.9483 7.24932 67.9483 6.2137C67.9483 5.33151 67.7951 4.58356 67.4887 3.96986C67.1824 3.33699 66.7611 2.85753 66.2249 2.53151C65.7079 2.1863 65.1047 2.0137 64.4154 2.0137C63.726 2.0137 63.2761 2.14795 63.0654 2.41644C62.8548 2.66575 62.7495 3.07808 62.7495 3.65343V16.4548C62.7495 17.126 62.7878 17.8356 62.8644 18.5836C62.9601 19.3123 63.0846 19.9068 63.2378 20.3671V20.5685H58.5847Z"
-                        fill="black" />
-                      <path
-                        d="M73.9906 20.3671C74.1438 19.9068 74.2587 19.3123 74.3353 18.5836C74.4311 17.8356 74.4789 17.126 74.4789 16.4548V4.54521C74.4789 3.87397 74.4311 3.17397 74.3353 2.44521C74.2587 1.69726 74.1438 1.09315 73.9906 0.632877V0.431507H83.1532L85.6234 0L86.0542 4.68904H85.8244C85.4032 3.97945 84.9532 3.43288 84.4745 3.04932C84.0149 2.66575 83.4883 2.39726 82.8947 2.24384C82.3011 2.09041 81.5926 2.0137 80.7692 2.0137H78.1554V18.9863H80.7692C81.5543 18.9863 82.2437 18.9096 82.8373 18.7562C83.45 18.6027 83.9958 18.3342 84.4745 17.9507C84.9532 17.5671 85.4032 17.0205 85.8244 16.311H86.0542L85.6234 21L83.1532 20.5685H73.9906V20.3671ZM77.6384 10.5V8.91781H81.0565C81.4969 8.91781 81.9086 8.85069 82.2915 8.71644C82.6936 8.58219 83.1053 8.32329 83.5266 7.93973H83.7277V11.4781H83.5266C83.1053 11.0753 82.6936 10.8164 82.2915 10.7014C81.9086 10.5671 81.4969 10.5 81.0565 10.5H77.6384Z"
-                        fill="black" />
-                      <path
-                        d="M88.6673 20.5685V20.3671C88.8205 19.9068 88.9354 19.3123 89.012 18.5836C89.1077 17.8356 89.1556 17.126 89.1556 16.4548V4.54521C89.1556 3.87397 89.1077 3.17397 89.012 2.44521C88.9354 1.69726 88.8205 1.09315 88.6673 0.632877V0.431507H94.4406C95.3789 0.431507 96.2884 0.527397 97.1693 0.719178C98.0501 0.910959 98.8448 1.2274 99.5533 1.66849C100.262 2.10959 100.817 2.69452 101.219 3.42329C101.621 4.13288 101.822 5.00548 101.822 6.0411C101.822 6.88493 101.621 7.66164 101.219 8.37123C100.836 9.08082 100.3 9.68493 99.6107 10.1836C98.9405 10.663 98.1458 11.0082 97.2267 11.2192L97.4278 10.8452C98.0214 10.8452 98.5671 11.0466 99.065 11.4493C99.582 11.8521 99.9937 12.5329 100.3 13.4918L101.851 17.9219C102.062 18.5356 102.253 19.0342 102.426 19.4178C102.617 19.7822 102.809 20.0986 103 20.3671V20.5685H98.8065L96.4225 13.2329C96.231 12.6575 95.9533 12.2548 95.5895 12.0247C95.2257 11.7945 94.6608 11.6795 93.8949 11.6795H92.43V10.0973H94.1247C95.4268 10.0973 96.3938 9.74247 97.0257 9.03288C97.6767 8.30411 98.0022 7.30685 98.0022 6.0411C98.0022 5.13973 97.8395 4.39178 97.5139 3.79726C97.1884 3.20274 96.7576 2.76164 96.2214 2.47397C95.7044 2.16712 95.13 2.0137 94.498 2.0137C93.9044 2.0137 93.4736 2.14795 93.2055 2.41644C92.9566 2.66575 92.8321 3.07808 92.8321 3.65343V16.4548C92.8321 17.126 92.8704 17.8356 92.947 18.5836C93.0428 19.3123 93.1672 19.9068 93.3204 20.3671V20.5685H88.6673Z"
-                        fill="black" />
-                    </svg>
-                  </center>
-                </td>
-              </tr>
-            </table>
+          <center style="background-color: #FAFAFA; max-width: 414px;">
+            {{ header }}
 
-            <table style="margin-bottom: 40px;">
+            <table>
               <tr>
                 <td>
                   <center>
                     <p
-                      style="font-family: Manner Pro Medium, sans-serif; color: #222222; font-size: 24px; line-height: 1.25; max-width: 324px;">
+                      style="font-family: Manner Pro Medium, sans-serif; color: #222222; font-size: 24px; line-height: 1.25; max-width: 324px; padding: 0;">
                       {{ email_title }}</p>
                   </center>
                 </td>
               </tr>
             </table>
+
+            {{space_big}}
 
             <table style="width: 100%; border-spacing: 0">
               <tr>
@@ -245,358 +254,431 @@ VIEW YOUR ORDER
                       <td>
                         <center>
                           <h2
-                            style="font-family: Manner Pro Medium, sans-serif; font-size: 24px; line-height: 1.25; max-width: 324px; padding-bottom: 10px; font-weight: 500;">
+                            style="font-family: Manner Pro Medium, sans-serif; font-size: 24px; line-height: 1.25; max-width: 324px; font-weight: 500; color: #222222; margin: 0;">
                             {{ order_title }}</h2>
                         </center>
+                        {{space_micro}}
                       </td>
                     </tr>
+                    
                     <tr>
                       <td>
                         <center>
                           <p
-                            style="max-width: 324px; font-family: Mabry Pro, sans-serif; line-height: 1.33; padding-bottom: 20px; color: #222222; font-size: 12px;">
+                            style="max-width: 324px; font-family: Mabry Pro, sans-serif; line-height: 1.33; color: #222222; font-size: 12px; padding: 0;">
                             {{ email_content }}
                           </p>
                         </center>
+                        {{space_small}}
                       </td>
                     </tr>
+
+                    {{ cta_btn_link }}
+                    
                     <tr>
                       <td>
-                        <a href="#"
-                          style="text-transform: uppercase; letter-spacing: 0.36px; font-size: 12px; line-height: 12px; color: #333333; width: 100%;">
-                          <center>
-                            <center
-                              style="padding: 18px 0; border: 1px solid #92C1EF; max-width: 370px; font-family: Mabry Pro, sans-serif;">
-                              {{ cta_text }}
-                            </center>
-                          </center>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
+                        {{ space_micro }}
+                        {{ space_small }}
+                  
                         <center>
-                          <h3 style="max-width: 324px; font-size: 12px;
-            font-weight: 400; line-height: 1.33; padding-top: 30px; margin: 0; font-family: Mabry Pro, sans-serif;">
-                          Visit our store</h3>
+                          <a href="{{ shop.url }}" style="max-width: 324px; font-size: 12px;
+            font-weight: 400; line-height: 1.33; padding: 0; margin: 0; font-family: Mabry Pro, sans-serif; color: #222222;">
+                          Visit our store</a>
                         </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table style="margin-bottom: 40px; display: block;">
-                          <tr>
-                            {% for line in subtotal_line_items %}
-                            <td style="display: inline-block">
-                              <table>
-                                <tr>
-                                  <td>
-                                    <center>
-                                      <img style="padding-right: 5px; object-fit: cover; padding-bottom: 10px; max-width: 202px;" src="{{ line | image_url: width: 300 }}" alt="{{ line.product.title }}" width="202" height="300">
-                                    </center>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    {% if line.product.title %}
-                                      {% assign line_title = line.product.title %}
-                                    {% else %}
-                                      {% assign line_title = line.title %}
-                                    {% endif %}
-                                    <center>
-                                      <p style="line-height: 1.33; font-size: 12px;
-                                      font-weight: 400; color: #222222; margin: 0; font-family: Mabry Pro, sans-serif; max-width: 192px;">{{ line_title }}</p>
-                                    </center>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <center>
-                                      <p style="color: #999999; line-height: 1.33; font-size: 12px; margin: 0; font-family: Mabry Pro, sans-serif; max-width: 192px;">
-                                        {{ line.product.price | money_with_currency}}</p>
-                                    </center>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                            {% endfor %}
-                          </tr>
-                        </table>
-                        <hr>
                       </td>
                     </tr>
 
                     <tr>
                       <td>
-                        <center style="padding-top: 40px; padding-bottom: 40px;">
+                        <table style="display: block;">
+                          <tr>
+                            {% for line in subtotal_line_items %}
+                              <td width="50%" style="padding: 0 5px; vertical-align: top;">
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <center>
+                                        <img style="object-fit: cover; width: 100%;" src="{{ line | image_url: width: 300 }}" alt="{{ line.product.title }}">
+                                      </center>
+                                    </td>
+                                  </tr>
+                                  
+                                  <tr>
+                                    <td style="padding: 0 12px 0 7px; vertical-align: top;">
+                                      {% if line.product.title %}
+                                        {% assign line_title = line.product.title %}
+                                      {% else %}
+                                        {% assign line_title = line.title %}
+                                      {% endif %}
+                                      {{ space_micro }}
+                                      <center>
+                                        <p style="line-height: 1.33; font-size: 12px;
+                                        font-weight: 400; color: #222222; margin: 0; font-family: Mabry Pro, sans-serif; max-width: 192px; padding: 0;">
+                                          {{ line_title }}
+                                        </p>
+                                        
+                                        {% if line.original_line_price != line.final_line_price %}
+                                          <p style="color: #999999; line-height: 1.33; font-size: 12px; margin: 0; font-family: Mabry Pro, sans-serif; max-width: 192px; padding: 0; text-decoration: line-through; opacity: 0.6;">
+                                            {{ line.original_line_price | money_with_currency }}
+                                          </p>
+                                        {% endif %}
+                                        
+                                        <p style="color: #999999; line-height: 1.33; font-size: 12px; margin: 0; font-family: Mabry Pro, sans-serif; max-width: 192px; padding: 0;">
+                                          {% if line.final_line_price > 0 %}
+                                            {{ line.final_line_price | money_with_currency }}
+                                          {% else %}
+                                            Free
+                                          {% endif %}
+                                        </p>
+                                      </center>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            {% endfor %}
+                          </tr>
+                        </table>
+  
+                        {{space_big}}
+                      </td>
+                    </tr>
+                  
+                    <tr>
+                      <td>
+                        {{ hr }}
+                        {{space_big}}
+                        <center>
+{% assign order_discount_count = 0 %}
+{% assign total_order_discount_amount = 0 %}
+{% assign has_shipping_discount = false %}
+
+{% for discount_application in discount_applications %}
+  {% if discount_application.target_selection == 'all' and discount_application.target_type == 'line_item' %}
+    {% assign order_discount_count = order_discount_count | plus: 1 %}
+    {% assign total_order_discount_amount = total_order_discount_amount | plus: discount_application.total_allocated_amount  %}
+  {% endif %}
+  {% if discount_application.target_type == 'shipping_line' %}
+    {% assign has_shipping_discount = true %}
+    {% assign shipping_discount = discount_application.title %}
+    {% assign shipping_amount = discount_application.total_allocated_amount %}
+  {% endif %}
+{% endfor %}
+
+{% assign order_total_price = subtotal_price - total_order_discount_amount | plus: tax_price | plus: shipping_price %}
+
+{% if has_shipping_discount %}
+  {% assign order_total_price = order_total_price | minus: shipping_price %}             
+{% endif %}
                           <table>
                             <tr>
                               <td>
                                 <center>
                                   <p
-                                    style="padding-bottom: 10px; color: #222222; font-size:12px; line-height: 1; letter-spacing: 0.36px; text-transform: uppercase; font-family: Mabry Pro, sans-serif;">
-                                    TOTAL: {{ total_price | money_with_currency }}</p>
+                                    style="padding: 0; color: #222222; font-size:12px; line-height: 1; letter-spacing: 0.36px; text-transform: uppercase; font-family: Mabry Pro, sans-serif;">
+                                    TOTAL: {{ order_total_price | money_with_currency }}</p>
                                 </center>
+                                {{ space_micro }}
                               </td>
                             </tr>
+
                             <tr>
                               <td>
                                 <center>
                                   <p
-                                    style="letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; font-size:12px; line-height: 1; margin: 0; font-family: Mabry Pro, sans-serif;">
-                                    Subtotal: {{ subtotal_price | money_with_currency }}</p>
+                                    style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; font-size:12px; line-height: 1; margin: 0; font-family: Mabry Pro, sans-serif;">
+                                    Subtotal: {{ subtotal_price | plus: total_order_discount_amount | money_with_currency }}</p>
                                 </center>
                               </td>
                             </tr>
+                            {% if order_discount_count > 0 %}
+                              {% if order_discount_count == 1 %}
+                                <tr>
+                                  <td>
+                                    <center>
+                                      <p
+                                        style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; font-size:12px; line-height: 1; font-family: Mabry Pro, sans-serif;">
+                                        Discount: -{{ total_order_discount_amount | money }}
+                                      </p>
+                                    </center>
+                                  </td>
+                                </tr>
+                              {% endif %}
+                              {% if order_discount_count > 1 %}
+                                <tr>
+                                  <td>
+                                    <center>
+                                      <p
+                                        style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; font-size:12px; line-height: 1; font-family: Mabry Pro, sans-serif;">
+                                        Discounts: -{{ total_order_discount_amount | money }}
+                                      </p>
+                                    </center>
+                                  </td>
+                                </tr>
+                              {% endif %}
+                            {% endif %}
+
                             <tr>
                               <td>
                                 <center>
                                   <p
-                                    style="letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; font-size:12px; line-height: 1; font-family: Mabry Pro, sans-serif;">
-                                    Discount: {{ total_discounts | money_with_currency }}</p>
-                                </center>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <center>
-                                  <p
-                                    style="margin: 0; line-height: 1; font-size:12px; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; font-family: Mabry Pro, sans-serif;">
-                                    Tax: {{ tax_price | money_with_currency }}</p>
-                                </center>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <center>
-                                  <p
-                                    style="letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; line-height: 1; font-size:12px; font-family: Mabry Pro, sans-serif;">
-                                    Shipping: {{ shipping_price | money_with_currency }}
+                                    style="padding-top: 0; margin: 0; line-height: 1; font-size:12px; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; font-family: Mabry Pro, sans-serif;">
+                                    Tax: {{ tax_price | money_with_currency }}<br />
                                   </p>
                                 </center>
                               </td>
                             </tr>
+                      
+                            {% if delivery_method == 'pick-up' %}
+                              <tr>
+                                <td>
+                                  <center>
+                                    <p
+                                      style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; line-height: 1; font-size:12px; font-family: Mabry Pro, sans-serif;">
+                                      Pickup: {{ shipping_price | money_with_currency }}
+                                    </p>
+                                  </center>
+                                </td>
+                              </tr>
+                            {% else %}
+                              {% if has_shipping_discount %}
+                                <tr>
+                                  <td>
+                                    <center>
+                                      <p
+                                        style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; line-height: 1; font-size:12px; font-family: Mabry Pro, sans-serif;">
+                                        Shipping: Free
+                                      </p>
+                                    </center>
+                                  </td>
+                                </tr>
+                              {% else %}
+                                <tr>
+                                  <td>
+                                    <center>
+                                      <p
+                                        style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; margin: 0; line-height: 1; font-size:12px; font-family: Mabry Pro, sans-serif;">
+                                        Shipping: {{ shipping_price | money_with_currency }}
+                                      </p>
+                                    </center>
+                                  </td>
+                                </tr>
+                              {% endif %}
+                            {% endif %}
                           </table>
                         </center>
+                        {{space_big}}
                       </td>
                     </tr>
                   </center>
                 </td>
               </tr>
             </table>
-
-            <table>
-              <hr style="border-color: #000000;
-                  border-bottom: none;
-                  margin-left: 7px;
-                  margin-right: 7px;
-                "
-              >
-
-              <tr>
-                <td>
-                  <center style="padding-top: 40px;">
-                    <p style="font-family: Manner Pro Medium, sans-serif;
-                        font-weight: 500;
-                        font-size: 24px;
-                        line-height: 30px;
-                        color: #222222;
-                        margin: 0;
-                      "
-                    >
-                      Your information
-                    </p>
-                  </center>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <center>
-                    <table>
-                      <tr>
-                        <td>
-                          <center style="padding-top: 20px;">
-                            <h3 style="font-family: Mabry Pro, sans-serif;
-                                font-size: 12px;
-                                line-height: 16px;
-                                font-weight: 400;
-                                color: #222222;
-                                margin-bottom: 0;
-                              "
-                            >
-                              Shipping Address:
-                            </h3>
-                          </center>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <center>
-                            <p style="font-family: Mabry Pro, sans-serif;
-                                font-size: 12px;
-                                line-height: 16px;
-                                font-weight: 400;
-                                color: #8e8e8e;
-                                letter-spacing: 0.36px;
-                                padding-top: 10px;
-                              "
-                            >
-                              Zoe Velez <br />
-                              401 Broadway <br />
-                              411 <br />
-                              New York NY 10013 <br />
-                              United States <br />
-                              +380638026515
-                            </p>
-                          </center>
-                        </td>
-                      </tr>
-                    </table>
-                  </center>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <center>
-                    <table>
-                      <tr>
-                        <td>
-                          <center>
-                            <h3 style="font-size: 12px;
-                                line-height: 16px;
-                                font-family: Mabry Pro, sans-serif;
-                                font-weight: 400;
-                                color: #222222;
-                                padding-top: 20px;
-                                margin-bottom: 0;
-                              "
-                            >
-                              Billing Address:
-                            </h3>
-                          </center>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <center>
-                            <p style="font-family: Mabry Pro, sans-serif;
-                                font-size: 12px;
-                                line-height: 16px;
-                                font-weight: 400;
-                                color: #8e8e8e;
-                                letter-spacing: 0.36px;
-                                padding-top: 10px;
-                              "
-                            >
-                              Asya Varetsa <br />
-                              241 President Street <br />
-                              Brooklyn NY 11231 <br />
-                              United States
-                            </p>
-                          </center>
-                        </td>
-                      </tr>
-                    </table>
-                  </center>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <center>
-                    <table style="text-align: center;
-                        font-size: 12px;
-                        line-height: 16px;
-                        font-family: Mabry Pro, sans-serif;
-                        font-weight: 400;
-                        color: #8e8e8e;
-                      "
-                    >
-                      <tr>
-                        <td>
-                          <h3 style="font-size: 12px;
-                              line-height: 16px;
-                              font-family: Mabry Pro, sans-serif;
-                              font-weight: 400;
-                              color: #222222;
-                              padding-top: 20px;
-                              margin-bottom: 0;
-                            "
-                          >
-                            Shipping method:
-                          </h3>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <p style="font-family: Mabry Pro, sans-serif;
-                              font-size: 12px;
-                              line-height: 16px;
-                              font-weight: 400;
-                              color: #8e8e8e;
-                              letter-spacing: 0.36px;
-                              padding-top: 10px;
-                            "
-                          >
-                            Standard shipping (5-10 days)
-                          </p>
-                        </td>
-                      </tr>
-                    </table>
-                  </center>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <center style="padding-bottom: 40px;">
-                    <table>
-                      <tr>
-                        <td>
-                          <center>
-                            <h3 style="font-size: 12px;
-                                line-height: 16px;
-                                font-family: Mabry Pro, sans-serif;
-                                font-weight: 400;
-                                color: #222222;
-                                padding-top: 20px;
-                                margin-bottom: 0;
-                              "
-                            >
-                              Payment method:
-                            </h3>
-                          </center>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <center>
-                            <p style="font-family: Mabry Pro, sans-serif;
-                                font-size: 12px;
-                                line-height: 16px;
-                                font-weight: 400;
-                                color: #8e8e8e;
-                                letter-spacing: 0.36px;
-                                padding-top: 10px;
-                              "
-                            >
-                              Mastercard ending with 0219 - $85.00
-                            </p>
-                          </center>
-                        </td>
-                      </tr>
-                    </table>
-                  </center>
-                </td>
-              </tr>
-            </table>
-
+            
+            {{hr}}
+            
+            <center style="padding: 0 20px">
+              <table>
+                <tr>
+                  <td>
+                    {{space_big}}
+                    <center>
+                      <p style="font-family: Manner Pro Medium, sans-serif;
+                          font-weight: 500;
+                          font-size: 24px;
+                          line-height: 30px;
+                          color: #222222;
+                          margin: 0;
+                          padding: 0;
+                        "
+                      >
+                        Your information
+                      </p>
+                    </center>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>
+                    <center>
+                      {% if requires_shipping and shipping_address %}
+                        <table>
+                          <tr>
+                            <td>
+                              {{ space_small }}
+                              <center>
+                                <h3 style="font-family: Mabry Pro, sans-serif;
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                    font-weight: 400;
+                                    color: #222222;
+                                    margin-bottom: 0;
+                                    padding: 0;
+                                  "
+                                >
+                                  Shipping Address:
+                                </h3>
+                              </center>
+                            </td>
+                          </tr>
+    
+                          <tr>
+                            <td>
+                              {{ space_micro }}
+                              <center class="gray-text">
+                                {{ shipping_address | format_address }}
+                              </center>
+                            </td>
+                          </tr>
+                        </table>
+                      {% endif %}
+                    </center>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>
+                    <center>
+                      {% if billing_address %}
+                        <table>
+                          <tr>
+                            <td>
+                              {{ space_small }}
+                              <center>
+                                <h3 style="font-size: 12px;
+                                    line-height: 16px;
+                                    font-family: Mabry Pro, sans-serif;
+                                    font-weight: 400;
+                                    color: #222222;
+                                    padding: 0;
+                                    margin-bottom: 0;
+                                  "
+                                >
+                                  Billing Address:
+                                </h3>
+                              </center>
+                            </td>
+                          </tr>
+    
+                          <tr>
+                            <td>
+                              {{ space_micro }}
+                              <center class="gray-text">
+                                {{ billing_address | format_address }}
+                              </center>
+                            </td>
+                          </tr>
+                        </table>
+                      {% endif %}
+                    </center>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>
+                    <center>
+                      {% if requires_shipping and shipping_address %}
+                        {% if shipping_method %}
+                          <table>
+                            <tr>
+                              <td>
+                                {{ space_small }}
+                                <center>
+                                  <h3 style="font-size: 12px;
+                                      line-height: 16px;
+                                      font-family: Mabry Pro, sans-serif;
+                                      font-weight: 400;
+                                      color: #222222;
+                                      padding: 0;
+                                      margin-bottom: 0;
+                                    "
+                                  >
+                                    Shipping method:
+                                  </h3>
+                                </center>
+                              </td>
+                            </tr>
+      
+                            <tr>
+                              <td>
+                                {{ space_micro }}
+                                <center class="gray-text">
+                                  <p>
+                                    {{ shipping_method.title }}
+                                  </p>
+                                </center>
+                              </td>
+                            </tr>
+                          </table>
+                        {% endif %}
+                      {% endif %}
+                    </center>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>
+                    <center>
+                      <table>
+                        <tr>
+                          <td>
+                            {{ space_small }}
+                            <center>
+                              <h3 style="font-size: 12px;
+                                  line-height: 16px;
+                                  font-family: Mabry Pro, sans-serif;
+                                  font-weight: 400;
+                                  color: #222222;
+                                  padding: 0;
+                                  margin-bottom: 0;
+                                "
+                              >
+                                Payment method:
+                              </h3>
+                            </center>
+                          </td>
+                        </tr>
+  
+                        <tr>
+                          <td>
+                            {{ space_micro }}
+                            <center class="gray-text">
+                              {% if transaction_count > 0 %}
+                                {% for transaction in transactions %}
+                                  {% if transaction.status == "success" or transaction.status == "pending" %}
+                                    {% if transaction.payment_details.credit_card_company %}
+                                      <p>
+                                        {{ transaction.payment_details.credit_card_company }} ending with {{ transaction.payment_details.credit_card_last_four_digits }} &mdash; {{ transaction.amount | money }}
+                                      </p>
+                                    {% elsif transaction.gateway_display_name == "Gift card" %}
+                                      <p>
+                                        {{ transaction.gateway_display_name }} ending with {{ transaction.payment_details.gift_card.last_four_characters | upcase }} &mdash; {{ transaction.amount | money }} <br />
+                                        &emsp;&emsp;&emsp;&nbsp;Gift card balance: {{ transaction.payment_details.gift_card.balance |  money }}
+                                      </p>
+                                    {% else %}
+                                      <p>
+                                        {{ transaction.gateway_display_name }} &mdash; {{ transaction.amount | money }}
+                                      </p>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endfor %}
+                              {% else %}
+                                <p>
+                                  Kindly note that all sale items are final and cannot be returned.
+                                </p>
+                              {% endif %}
+                            </center>
+                          </td>
+                        </tr>
+                      </table>
+                    </center>
+                    {{ space_big }}
+                  </td>
+                </tr>
+              </table>
+            </center>
+            
+            {{hr}}
+            
             {{ footer }}
           </center>
         </td>
