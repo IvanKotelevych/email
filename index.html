@@ -2,8 +2,8 @@
   https://cdn.shopify.com/s/files/1/0774/3114/4728/files/sleeper-logo.png
 {% endcapture %}
 {% capture email_title %}
-  {% if customer.name %}
-    Thank you for shopping with Sleeper, {{customer.name}}.
+  {% if customer.first_name %}
+    Thank you for shopping with Sleeper, {{customer.first_name}}.
   {% else %}
     Thank you for shopping with Sleeper.
   {% endif %}
@@ -41,14 +41,14 @@
 {% endcapture %}
 
 {% capture hr %}
-  <div style="height: 1px; background-color: #000000; margin-left: 7px; margin-right: 7px;"></div>
+  <div class="invert" style="height: 1px; background-color: #000000; margin-left: 7px; margin-right: 7px;"></div>
 {% endcapture %}
 {% capture header %}
   <table>
     <tr>
       <td>
         <center style="padding-top: 30px; padding-bottom: 30px;">
-          <img src={{logo_url}} alt="Sleeper logo" width="103" height="21"/>
+          <img class="invert" src={{logo_url}} alt="Sleeper logo" width="103" height="21"/>
         </center>
       </td>
     </tr>
@@ -180,7 +180,6 @@
   <title></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
   <style>
     @font-face {
       font-family: 'Manner Pro Regular';
@@ -211,6 +210,7 @@
       margin: 0;
       padding: 0;
     }
+
     .gray-text p {
       font-family: Mabry Pro, sans-serif;
       font-size: 12px;
@@ -293,12 +293,12 @@
                         <table style="display: block;">
                           <tr>
                             {% for line in subtotal_line_items %}
-                              <td width="50%" style="padding: 0 5px; vertical-align: top;">
+                              <td width="50%" style="box-sizing: border-box; padding: 0 5px; vertical-align: top; display: inline-block">
                                 <table>
                                   <tr>
                                     <td>
                                       <center>
-                                        <img style="object-fit: cover; width: 100%;" src="{{ line | image_url: width: 300 }}" alt="{{ line.product.title }}">
+                                        <img style="object-fit: contain; width: 100%; height: 300px" src="{{ line | image_url: width: 300 }}" alt="{{ line.product.title }}">
                                       </center>
                                     </td>
                                   </tr>
@@ -363,19 +363,13 @@
     {% assign shipping_amount = discount_application.total_allocated_amount %}
   {% endif %}
 {% endfor %}
-
-{% assign order_total_price = subtotal_price - total_order_discount_amount | plus: tax_price | plus: shipping_price %}
-
-{% if has_shipping_discount %}
-  {% assign order_total_price = order_total_price | minus: shipping_price %}             
-{% endif %}
                           <table>
                             <tr>
                               <td>
                                 <center>
                                   <p
                                     style="padding: 0; color: #222222; font-size:12px; line-height: 1; letter-spacing: 0.36px; text-transform: uppercase; font-family: Mabry Pro, sans-serif;">
-                                    TOTAL: {{ order_total_price | money_with_currency }}</p>
+                                    TOTAL: {{ total_price | money_with_currency }}</p>
                                 </center>
                                 {{ space_micro }}
                               </td>
@@ -386,7 +380,7 @@
                                 <center>
                                   <p
                                     style="padding-top: 0; letter-spacing: 0.36px; text-transform: uppercase; color: #8E8E8E; font-size:12px; line-height: 1; margin: 0; font-family: Mabry Pro, sans-serif;">
-                                    Subtotal: {{ subtotal_price | plus: total_order_discount_amount | money_with_currency }}</p>
+                                    Subtotal: {{ subtotal_price | plus: total_order_discount_amount | money_with_currency }}{{total_order_discount_amount}}</p>
                                 </center>
                               </td>
                             </tr>
@@ -440,7 +434,7 @@
                                 </td>
                               </tr>
                             {% else %}
-                              {% if has_shipping_discount %}
+                              {% if has_shipping_discount or shipping_price == 0 %}
                                 <tr>
                                   <td>
                                     <center>
@@ -688,3 +682,82 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+<tr class="subtotal-line">
+  <td class="subtotal-line__title">
+    Subtotal {{ subtotal_price | plus: total_order_discount_amount | money }}
+  </td>
+</tr>
+
+{% if order_discount_count > 0 %}
+  {% if order_discount_count == 1 %}
+    <tr class="subtotal-line">
+      <td class="subtotal-line__title">
+        Order Discount: -{{ total_order_discount_amount | money }}
+      </td>
+    </tr>
+  {% endif %}
+  {% if order_discount_count > 1 %}
+    <tr class="subtotal-line">
+      <td class="subtotal-line__title">
+        Order Discounts: -{{ total_order_discount_amount | money }}
+      </td>
+    </tr>
+  {% endif %}
+{% endif %}
+
+{% if delivery_method == 'pick-up' %}
+  <tr class="subtotal-line">
+    <td class="subtotal-line__title">
+      Pickup: {{ shipping_price | money }}
+    </td>
+  </tr>
+{% else %}
+  {% if has_shipping_discount %}
+    <tr class="subtotal-line">
+      <td class="subtotal-line__title">
+        Shipping: Free
+      </td>
+    </tr>
+
+    <tr class="subtotal-line">
+      <td class="subtotal-line__title">
+        {{ shipping_discount }} (-{{ shipping_amount | money }})
+      </td>
+    </tr>
+  {% else %}
+    <tr class="subtotal-line">
+      <td class="subtotal-line__title">
+        Shipping: {{ shipping_price | money }}
+      </td>
+    </tr>
+  {% endif %}
+{% endif %}
+
+{% if total_duties %}
+  <tr class="subtotal-line">
+    <td class="subtotal-line__title">
+      Duties: {{ total_duties | money }}
+    </td>
+  </tr>
+{% endif %}
+
+<tr class="subtotal-line">
+  <td class="subtotal-line__title">
+    Tax: {{ tax_price | money }}
+  </td>
+</tr>
+
+{% if total_tip and total_tip > 0 %}
+  <tr class="subtotal-line">
+    <td class="subtotal-line__title">
+      Tip: {{ total_tip | money }}
+    </td>
+  </tr>
+{% endif %}
